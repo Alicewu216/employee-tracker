@@ -174,14 +174,14 @@ function addEmployee() {
         });
 }
 function departmentView() {
-    connection.query("SELECT * FROM department",(err,res) => {
+    connection.query("SELECT name FROM department",(err,res) => {
         if (err) throw err;
         console.table(res);
         initiatePrompt();
     });
 }
 function roleView() {
-    connection.query("SELECT * FROM role",(err,res) => {
+    connection.query("SELECT title FROM role",(err,res) => {
         if (err) throw err;
         console.table(res);
         initiatePrompt();
@@ -285,7 +285,7 @@ function deleteRole() {
             name: "roleID",
             message: "Enter the roleID that you wish to remove: "
         }).then((response) => {
-            connection.query("DELETE FROM role WHERE id = ?", [response.roleIF],(err, res) => {
+            connection.query("DELETE FROM role WHERE id = ?", [response.roleID],(err, res) => {
                 if(err) throw err;
                 console.log("Role has been successfully removed!")
                 initiatePrompt();
